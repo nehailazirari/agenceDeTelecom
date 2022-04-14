@@ -52,6 +52,14 @@ public class ControllerAuthentification implements Initializable {
         lockImageView.setImage(lockImage);
 
     }
+    /*
+    //Proposition de chargement des images
+
+   @FXML
+    public void initialize(){
+        idimage.setImage(new Image("chemin de l image dans ton pc") );
+      
+    }*/
     public  void loginButtonOnAction(ActionEvent event){
 
         if(usernameTexField.getText().isBlank() == false && entrerPasswordField.getText().isBlank() == false){
