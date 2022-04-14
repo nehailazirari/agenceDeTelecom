@@ -18,4 +18,17 @@ public class DatabaseConnection {
         }
         return connection;
     }
+    public  ResultSet gerer(String sql){
+        DatabaseConnection connectionNew = new DatabaseConnection();
+        Connection connect = connectionNew.getConnectionD();
+        ResultSet result = null;
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+            result = ps.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

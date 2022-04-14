@@ -1,6 +1,5 @@
 package controller;
 
-import model.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,13 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
+import model.DatabaseConnection;
 
 import java.io.File;
-import  java.net.URL;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 
@@ -70,25 +68,24 @@ public class ControllerAuthentification implements Initializable {
         stage.close();
     }
     public void validateLogin(){
+        int i = 0;
         DatabaseConnection connectNew = new DatabaseConnection();
         Connection conncetDB = connectNew.getConnectionD();
         String verifyLogin = "SELECT idcount FROM gestiondatabase.user_account where username= '"+usernameTexField.getText()+"' and password= '"+entrerPasswordField.getText()+"'";
-        try {
-            Statement statement =conncetDB.createStatement();
-            ResultSet queryResult= statement.executeQuery(verifyLogin);
-            while(queryResult.next()){
-                if(queryResult.getInt(1)== 1){
-                    loginMessageLabel.setText("congratulations!");
-                }
-                else{
-                    loginMessageLabel.setText("Invalide login. Please try again");
+            ResultSet queryResult= connectNew.gerer(verifyLogin);
+            try {
+                while (queryResult.next()) {
+                    if (queryResult.getInt(1) == 1) {
+                        loginMessageLabel.setText("congratulations!");
+                        i = 1;
+                    }
 
                 }
+                if (i == 0)
+                    loginMessageLabel.setText("Invalide login. Please try again");
             }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
+            catch (Exception e){
+                e.printStackTrace();
+            }
     }
 }
