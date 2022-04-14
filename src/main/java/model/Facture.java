@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class Facture {
     private int numero_Facture ;
-    private int numero_client;
+    private int id_client;
     private double montant;
     private Date date_delivrance;
     private String Etat_paiement;
 
     // Constructeur
-    public Facture(int numero_Facture, int numero_client, double montant, Date date_delivrance, String etat_paiement) {
-        
+    public Facture(int numero_Facture, int id_client, double montant, Date date_delivrance, String etat_paiement) {
+
         setNumero_Facture(numero_Facture);
-        setNumero_client(numero_client);
+        setId_client(id_client);
         setMontant(montant);
         setDate_delivrance(date_delivrance);
         setEtat_paiement(etat_paiement);
-       
+
 
     }
 
@@ -30,12 +30,12 @@ public class Facture {
         this.numero_Facture = numero_Facture;
     }
 
-    public int getNumero_client() {
-        return numero_client;
+    public int getId_client() {
+        return id_client;
     }
 
-    public void setNumero_client(int numero_client) {
-        this.numero_client = numero_client;
+    public void setId_client(int id_client) {
+        this.id_client = id_client;
     }
 
     public double getMontant() {
