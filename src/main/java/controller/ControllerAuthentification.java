@@ -2,13 +2,17 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.DatabaseConnection;
 
 import java.io.File;
@@ -76,10 +80,10 @@ public class ControllerAuthentification implements Initializable {
             try {
                 while (queryResult.next()) {
                     if (queryResult.getInt(1) == 1) {
-                        loginMessageLabel.setText("congratulations!");
+                        //loginMessageLabel.setText("congratulations!");
+                        createPage();
                         i = 1;
                     }
-
                 }
                 if (i == 0)
                     loginMessageLabel.setText("Invalide login. Please try again");
@@ -87,5 +91,17 @@ public class ControllerAuthentification implements Initializable {
             catch (Exception e){
                 e.printStackTrace();
             }
+    }
+    public void createPage(){
+        try{
+            Parent system = FXMLLoader.load(getClass().getResource("/view/Forfait.fxml"));
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene( system,608, 618));
+            stage.show();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
