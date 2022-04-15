@@ -1,14 +1,16 @@
 package model;
+
 import java.sql.*;
 public class DatabaseConnection {
 
     static Connection connection =null;
-    static String databaseName="gestiondatabase";
+    static String databaseName="gestiondaatabase";
     static String url="jdbc:mysql://localhost:3306/"+databaseName;
-    static String user="system";
-    static String password="nehaila2001";
+    static String user="root";
+    static String password="root";
 
     public  Connection getConnectionD() {
+      
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -18,17 +20,18 @@ public class DatabaseConnection {
         }
         return connection;
     }
-    public  ResultSet gerer(String sql){
+
+    public  static void gerer(String sql){
         DatabaseConnection connectionNew = new DatabaseConnection();
         Connection connect = connectionNew.getConnectionD();
-        ResultSet result = null;
         try {
             PreparedStatement ps = connect.prepareStatement(sql);
-            result = ps.executeQuery();
+            ps.executeUpdate();
+            System.out.println("data inserted successfully");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("fail in inserting data");
         }
-        return result;
+
     }
 }
