@@ -1,5 +1,4 @@
-package controller;
-
+package Controlleurs;
 
 import Java.Client;
 import Java.DatabaseConnection;
@@ -125,8 +124,14 @@ public class ControllerClient implements Initializable {
 
        }
         else{
+
+            //Ajout dans la table de l interface
             list.add(new Client(Integer.parseInt(id), nom, prenom, CIN, adresse, Integer.parseInt(age) ) );
             tableview.setItems(list);
+
+           //ajout dans la base de donnée
+           String s="insert into client values("+Integer.parseInt(id)+",'"+nom+"','"+prenom+"','"+CIN+"','"+adresse+"',"+Integer.parseInt(age)+")" ;
+           DatabaseConnection.gerer(s);
 
 
             id_field.setText("");
@@ -137,24 +142,26 @@ public class ControllerClient implements Initializable {
             Age_field.setText("");
         }
 
-        //ajout dans la base de donnée
-        //String s="insert into client values("+Integer.parseInt(id)+"'"+nom+"','"+prenom+"','"+CIN+"','"+adresse+"',"+Integer.parseInt(age)+")" ;
-        String s="insert into gestiondaatabase.client values(1+'lamiaa','cherkaoui','lla','lalal',233)" ;
-        DatabaseConnection objet = new DatabaseConnection();
-        ResultSet quiySet = objet.gerer(s);
-
-
     }
 
     @FXML
     void SupprimerClient(ActionEvent event) {
-        /*Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "Confirmer la suppresion de cet enregistrement", ButtonType.OK,ButtonType.NO);
-        a1.show();*/
-
+        Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "Confirmer la suppresion de cet enregistrement", ButtonType.OK,ButtonType.NO);
+        a1.show();
         int selectedID=tableview.getSelectionModel().getSelectedIndex();
+        int id =list.get(selectedID).getId_client();
 
+        //Suppression de la base de donnée
+
+        String s=" delete from gestiondaatabase.client where idClient="+id;
+        DatabaseConnection.gerer(s);
+
+        //Supression de la table de l interface
         list.remove(selectedID);
         tableview.setItems(list);
+
+
+
     }
 
     public void ModifiererClient(ActionEvent actionEvent) {
@@ -189,4 +196,3 @@ public class ControllerClient implements Initializable {
 
     }
 }
-
