@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.ControllerFacture"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="514.0" prefWidth="688.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerFacture">
+    <children>
+        <TextField fx:id="numero_field" layoutX="165.0" layoutY="90.0" prefHeight="35.0" prefWidth="117.0" />
+        <TextField fx:id="id_field" layoutX="165.0" layoutY="141.0" prefHeight="35.0" prefWidth="117.0" />
+        <TextField fx:id="delivrance_field" layoutX="434.0" layoutY="90.0" prefHeight="35.0" prefWidth="109.0" />
+        <TextField fx:id="etatpaiementfield" layoutX="434.0" layoutY="145.0" prefHeight="35.0" prefWidth="109.0" />
+        <Label layoutX="29.0" layoutY="98.0" text="Numéro facture:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="143.0" prefHeight="20.0" prefWidth="101.0" text="ID Client:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="316.0" layoutY="100.0" prefHeight="25.0" prefWidth="101.0" text="Date délivrance:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="312.0" layoutY="149.0" text="Etat de  paiement :">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="29.0" layoutY="194.0" text="Montant:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="montant_field" layoutX="165.0" layoutY="192.0" prefHeight="35.0" prefWidth="117.0" />
+        <Button fx:id="button_AjouterFacture" layoutX="563.0" layoutY="83.0" mnemonicParsing="false" onAction="#AjouterFacture" prefHeight="25.0" prefWidth="91.0" text="Ajouter" />
+        <Button fx:id="button_SupprimerFacture" layoutX="563.0" layoutY="128.0" mnemonicParsing="false" onAction="#SupprimerClientFacture" prefHeight="25.0" prefWidth="91.0" text="Supprimer" />
+        <Button fx:id="button_ModifierFacture" layoutX="563.0" layoutY="179.0" mnemonicParsing="false" onAction="#ModifiererFacture" prefHeight="25.0" prefWidth="91.0" text="Modifier" />
+        <Label layoutX="41.0" layoutY="259.0" prefHeight="25.0" prefWidth="63.0" text="Résulat:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Button fx:id="button_ChercherFacture" layoutX="563.0" layoutY="225.0" mnemonicParsing="false" onAction="#ChercherFacture" prefHeight="25.0" prefWidth="91.0" text="Chercher" />
+        <TableView fx:id="tableviewFacture" layoutX="41.0" layoutY="314.0" prefHeight="200.0" prefWidth="613.0">
+            <columns>
+                <TableColumn fx:id="Colonne_NumeroFacture" prefWidth="126.66668319702148" text="Numéro facture" />
+                <TableColumn fx:id="Colonne_idClient" prefWidth="125.33332824707031" text="ID Client " />
+                <TableColumn fx:id="Colonne_montant" prefWidth="85.33331298828125" text="Montant" />
+                <TableColumn fx:id="Colonne_etatPaiement" prefWidth="170.66665649414062" text="Etat de paiement" />
+                <TableColumn fx:id="Colonne_dateDélivrance" prefWidth="105.33331298828125" text="Date délivrance" />
+            </columns>
+        </TableView>
+        <Label layoutX="196.0" layoutY="14.0" text="Section Facture">
+            <font>
+                <Font size="31.0" />
+            </font>
+        </Label>
+      <Label layoutX="287.0" layoutY="197.0" prefHeight="25.0" prefWidth="28.0" text="Dhs" />
+    </children>
 </AnchorPane>
