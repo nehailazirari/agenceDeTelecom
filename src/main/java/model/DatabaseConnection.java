@@ -1,6 +1,6 @@
 package model;
-
 import java.sql.*;
+
 public class DatabaseConnection {
 
     static Connection connection =null;
@@ -10,7 +10,7 @@ public class DatabaseConnection {
     static String password="root";
 
     public  Connection getConnectionD() {
-      
+
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,11 +27,28 @@ public class DatabaseConnection {
         try {
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.executeUpdate();
-            System.out.println("data inserted successfully");
+            System.out.println("les données ont été mis a jour");
 
         } catch (SQLException e) {
-            System.out.println("fail in inserting data");
+            System.out.println("échec de mise a jour");
         }
 
     }
+
+    public  static ResultSet Afficher(String sql) {
+        DatabaseConnection connectionNew = new DatabaseConnection();
+        Connection connect = connectionNew.getConnectionD();
+        ResultSet res=null;
+        try {
+            PreparedStatement ps = connect.prepareStatement(sql);
+             res = ps.executeQuery(sql);
+
+
+        } catch (SQLException e) {
+            System.out.println("echec");
+        }
+
+        return res;
+    }
+
 }
