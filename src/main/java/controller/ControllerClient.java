@@ -1,7 +1,7 @@
-package Controlleurs;
+package Controller;
 
-import Java.Client;
-import Java.DatabaseConnection;
+import Model.Client;
+import Model.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,9 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -37,6 +40,7 @@ public class ControllerClient implements Initializable {
 
     @FXML
     private Button button_AjouterClient;
+
     @FXML
     private Button button_ChercherClient;
 
@@ -63,17 +67,17 @@ public class ControllerClient implements Initializable {
     private Button button_ModifierClient;
     @FXML
     private Button button_SupprimerClient;
+    @FXML
+    private ImageView imageclient;
 
 
 
-    //liste des lignes
-    ObservableList<Client> list= FXCollections.observableArrayList(
-            new Client(433,"yassine","halia","124","Maarf",39)
-
-    );
+    ObservableList<Client> list= FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        imageclient.setImage(new Image("Pictures/client.png"));
 
         Colonne_idClient.setCellValueFactory(new PropertyValueFactory<Client,Integer>("id_client"));
         Colonne_nom.setCellValueFactory(new PropertyValueFactory<Client,String>("Nom"));
@@ -82,10 +86,21 @@ public class ControllerClient implements Initializable {
         Colonne_Adresse.setCellValueFactory(new PropertyValueFactory<Client,String>("Adresse"));
         Colonne_Age.setCellValueFactory(new PropertyValueFactory<Client,Integer>("Age"));
 
+        //afficher les données a partir de la base de donnée
+
+        String sql="select * from gestiondaatabase.client";
+        ResultSet res= DatabaseConnection.Afficher(sql);
+
+            try {
+               while(res.next()){
+                   list.add(new Client( res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5), res.getInt(6) ) );
+               }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         tableview.setItems(list);
-
-
-    }
+        }
 
 
     //Vérifier qu une chaine de caractere est un nombre
@@ -147,18 +162,21 @@ public class ControllerClient implements Initializable {
     @FXML
     void SupprimerClient(ActionEvent event) {
         Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "Confirmer la suppresion de cet enregistrement", ButtonType.OK,ButtonType.NO);
-        a1.show();
-        int selectedID=tableview.getSelectionModel().getSelectedIndex();
-        int id =list.get(selectedID).getId_client();
+        //a1.show();
+        Optional <ButtonType> resultat= a1.showAndWait();
+        if(resultat.get()==ButtonType.OK) {
+            int selectedID = tableview.getSelectionModel().getSelectedIndex();
+            int id = list.get(selectedID).getId_client();
 
-        //Suppression de la base de donnée
+            //Suppression de la base de donnée
 
-        String s=" delete from gestiondaatabase.client where idClient="+id;
-        DatabaseConnection.gerer(s);
+            String s = " delete from gestiondaatabase.client where idClient=" + id;
+            DatabaseConnection.gerer(s);
 
-        //Supression de la table de l interface
-        list.remove(selectedID);
-        tableview.setItems(list);
+            //Supression de la table de l interface
+            list.remove(selectedID);
+            tableview.setItems(list);
+        }
 
 
 
@@ -166,10 +184,27 @@ public class ControllerClient implements Initializable {
 
     public void ModifiererClient(ActionEvent actionEvent) {
 
-        int selectedID=tableview.getSelectionModel().getSelectedIndex();
-        Client cc=new Client(434,"fatiha","halia","124","Maarf",39);
-        list.set(selectedID,cc);
-        tableview.setItems(list);
+        int selectedID = tableview.getSelectionModel().getSelectedIndex();
+        int ancien_id=list.get(selectedID).getId_client();
+
+        int id= Integer.parseInt(id_field.getText());
+        String nom = nom_field.getText();
+        String prenom = prenom_field.getText();
+        String CIN = CIN_field.getText();
+        String  adresse= Adresse_field.getText();
+        int age = Integer.parseInt(Age_field.getText());
+
+        Client f =new Client(id,nom,prenom,CIN,adresse,age);
+        list.set(selectedID,f);
+
+        //Modification dans la base de donnée
+        String s="UPDATE Client SET idClient="+ id +", nom='"+nom+"',prenom='"+prenom +"', CIN='"+CIN+"',Adresse='"+adresse+"'" +"Age="+age+
+                "WHERE  idClient="+ancien_id ;
+
+        DatabaseConnection.gerer(s);
+
+
+
 
     }
     @FXML
