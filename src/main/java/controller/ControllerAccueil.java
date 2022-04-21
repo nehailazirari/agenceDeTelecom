@@ -1,49 +1,53 @@
 package controller;
 
 
+
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ControllerAccueil{
+public class ControllerAccueil  implements Initializable{
 
-    @FXML
-    private Button bouton_client;
 
-    @FXML
-    private Button bouton_facture;
 
     @FXML
-    private Button boutton_forfait;
-    @FXML
-    private ImageView image_client;
+    private ImageView accueil;
 
     @FXML
-    private ImageView image_facture;
+    private AnchorPane anchor;
 
-    @FXML
-    private ImageView image_forfait;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        accueil.setImage(new Image("Pictures/accueill.jpg"));
+
+
+
+    }
 
 
     @FXML
     void acceder_client(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/Layout/Client.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        Scene tableViewScene = new Scene(tableViewParent );
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         window.setScene(tableViewScene);
         window.show();
+
 
     }
 
@@ -75,12 +79,12 @@ public class ControllerAccueil{
     }
     //Chargement des images
 
-   @FXML
+  /* @FXML
     public void initialize(){
-        image_client.setImage(new Image("C:\\Users\\HP\\Documents\\EMI1\\Projet2\\photos\\client.png") );
+       image_client.setImage(new Image("C:\\Users\\HP\\Documents\\EMI1\\Projet2\\photos\\client.png") );
        image_forfait.setImage(new Image("C:\\Users\\HP\\Documents\\EMI1\\Projet2\\photos\\telephone.png") );
        image_facture.setImage(new Image("C:\\Users\\HP\\Documents\\EMI1\\Projet2\\photos\\facturer.png") );
-    }
+    }*/
 
 }
 
