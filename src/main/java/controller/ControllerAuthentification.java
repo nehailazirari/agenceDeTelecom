@@ -1,6 +1,5 @@
-package Controller;
+package controller;
 
-import Model.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.DatabaseConnection;
 
-
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -42,49 +42,29 @@ public class ControllerAuthentification implements Initializable {
     private ImageView brandingImageView;
     @FXML
     private ImageView lockImageView;
-
-
+    DatabaseConnection obj = new DatabaseConnection();
     @Override
     public  void initialize(URL url, ResourceBundle resourceBundle){
-       brandingImageView.setImage(new Image("Pictures/img.png"));
-        lockImageView.setImage(new Image("Pictures/img_1.png"));
-
-        /*File brandingFile = new File("Pictures/img.png");
+       File brandingFile = new File("image/nana.jpg");
 
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
 
-        File lockFile = new File("Pictures/img_1.png");
+        File lockFile = new File("image/imagesk.png");
         Image lockImage = new Image(lockFile.toURI().toString());
-        lockImageView.setImage(lockImage);*/
+        lockImageView.setImage(lockImage);
 
     }
 
     public  void loginButtonOnAction(ActionEvent event) throws SQLException, IOException {
 
-        /*if(usernameTexField.getText().isBlank() == false && entrerPasswordField.getText().isBlank() == false){
-            validateLogin();
+        if(usernameTexField.getText().isBlank() == false && entrerPasswordField.getText().isBlank() == false){
+            validateLogin(event);
         }
         else{
             loginMessageLabel.setText("Entrer votre nom d'utilisateur et mot de passe");
-        }*/
-        String verifyLogin = "SELECT * FROM gestiondaatabase.user_account where Nom_d_utilsateur= '"+usernameTexField.getText()+"' and mot_de_passe= '"+entrerPasswordField.getText()+"'";
-        ResultSet queryResult= DatabaseConnection.Afficher(verifyLogin);
-
-        if (queryResult.next()==false) {  //retrieve data
-            loginMessageLabel.setText("Invalide login. Please try again");
-
         }
-        else{
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/Layout/Accueil.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent );
 
-            //This line gets the Stage information
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(tableViewScene);
-            window.show();
-
-        }
     }
 
 
@@ -94,18 +74,15 @@ public class ControllerAuthentification implements Initializable {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-    /*public void login(){
+    public void validateLogin(ActionEvent event){
         int i = 0;
-        DatabaseConnection connectNew = new DatabaseConnection();
-        Connection conncetDB = connectNew.getConnectionD();
-        String verifyLogin = "SELECT id FROM gestiondatabase.user_account where Nom_d_utilisateur= '"+usernameTexField.getText()+"' and mot_de_passe '"+entrerPasswordField.getText()+"'";
+        String verifyLogin = "SELECT * FROM user_account where username = '"+usernameTexField.getText()+"' and password ='"+entrerPasswordField.getText()+"'";
 
-        ResultSet queryResult= DatabaseConnection.Afficher(verifyLogin);
+        ResultSet queryResult= obj.afficher(verifyLogin);
         try {
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
-                    //loginMessageLabel.setText("congratulations!");
-                    createPage();
+                    createPage(event);
                     i = 1;
                 }
             }
@@ -115,16 +92,17 @@ public class ControllerAuthentification implements Initializable {
         catch (Exception e){
             e.printStackTrace();
         }
-    }*/
-    public void validateLogin() throws SQLException {
-        String verifyLogin = "SELECT id FROM gestiondatabase.user_account where Nom_d_utilisateur= '"+usernameTexField.getText()+"' and mot_de_passe '"+entrerPasswordField.getText()+"'";
-       ResultSet queryResult= DatabaseConnection.Afficher(verifyLogin);
-        while (queryResult.next()) {  //retrieve data
-            String data1 = queryResult.getString(1);
-
-            System.out.println("id :  "+data1);
-
+    }
+    void createPage(ActionEvent event){
+        Parent system = null;
+        try {
+            system = FXMLLoader.load(getClass().getResource("/view/Accueil.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene( system,800, 500));
+        stage.show();
     }
 
 

@@ -1,7 +1,6 @@
-package Controller;
+package controller;
 
-import Model.DatabaseConnection;
-import Model.Facture;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import model.DatabaseConnection;
+import model.Facture;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -55,6 +56,7 @@ public class ControllerFacture implements Initializable {
     @FXML
     private TextField etatpaiementfield;
 
+
     @FXML
     private TextField id_field;
 
@@ -66,8 +68,7 @@ public class ControllerFacture implements Initializable {
 
     @FXML
     private TableView<Facture> tableviewFacture;
-
-
+    DatabaseConnection obj = new DatabaseConnection();
 
     //liste des lignes
 
@@ -90,7 +91,7 @@ public class ControllerFacture implements Initializable {
         //afficher les données a partir de la base de donnée
 
         String sql = "select * from gestiondaatabase.Facture";
-        ResultSet res = DatabaseConnection.Afficher(sql);
+        ResultSet res = obj.afficher(sql);
 
         try {
             while (res.next()) {
@@ -173,7 +174,7 @@ public class ControllerFacture implements Initializable {
 
             //ajout dans la base de donnée
             String s="insert into Facture values("+Integer.parseInt(Numero)+","+Integer.parseInt(idclient)+","+Float.parseFloat(montant)+",'"+etat_paiement+"','"+date+"' )" ;
-            DatabaseConnection.gerer(s);
+            obj.gereMAJ(s);
 
 
             numero_field.setText("");
@@ -211,7 +212,7 @@ public class ControllerFacture implements Initializable {
         String s="UPDATE facture SET Numero_Facture="+ Numero +", idClient="+idclient+",montant="+montant +", date_delivrance='"+date+"' , etat_de_paiement='"+etat_paiement+"'" +
                 "WHERE  Numero_Facture="+ancien_numero ;
 
-        DatabaseConnection.gerer(s);
+        obj.gereMAJ(s);
 
 
 
@@ -230,7 +231,7 @@ public class ControllerFacture implements Initializable {
             //Suppression de la base de donnée
 
             String s = " delete from gestiondaatabase.facture where Numero_Facture=" + id;
-            DatabaseConnection.gerer(s);
+            obj.gereMAJ(s);
 
             //Supression de la table de l interface
             list.remove(selectedID);

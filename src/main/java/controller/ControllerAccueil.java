@@ -1,8 +1,6 @@
 package controller;
 
 
-
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -31,7 +28,7 @@ public class ControllerAccueil  implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        accueil.setImage(new Image("Pictures/accueill.jpg"));
+        //accueil.setImage(new Image("Pictures/accueill.jpg"));
 
 
 
@@ -40,8 +37,8 @@ public class ControllerAccueil  implements Initializable{
 
     @FXML
     void acceder_client(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/Layout/Client.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent );
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent,800,500 );
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -53,8 +50,8 @@ public class ControllerAccueil  implements Initializable{
 
     @FXML
     void acceder_facture(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/Layout/Facture.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent,800,500);
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -67,8 +64,8 @@ public class ControllerAccueil  implements Initializable{
 
     @FXML
     void acceder_forfait(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/Layout/Forfait.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent,800,500);
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -1,16 +1,14 @@
 package model;
 
-import java.util.Date;
-
 public class Facture {
     private int numero_Facture ;
     private int id_client;
     private double montant;
-    private Date date_delivrance;
+    private String date_delivrance;
     private String Etat_paiement;
 
     // Constructeur
-    public Facture(int numero_Facture, int id_client, double montant, Date date_delivrance, String etat_paiement) {
+    public Facture(int numero_Facture, int id_client, double montant, String date_delivrance, String etat_paiement) {
 
         setNumero_Facture(numero_Facture);
         setId_client(id_client);
@@ -46,11 +44,11 @@ public class Facture {
         this.montant = montant;
     }
 
-    public Date getDate_delivrance() {
+    public String getDate_delivrance() {
         return date_delivrance;
     }
 
-    public void setDate_delivrance(Date date_delivrance) {
+    public void setDate_delivrance(String date_delivrance) {
         this.date_delivrance = date_delivrance;
     }
 

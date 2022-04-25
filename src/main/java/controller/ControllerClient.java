@@ -1,7 +1,6 @@
-package Controller;
+package controller;
 
-import Model.Client;
-import Model.DatabaseConnection;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,8 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.Client;
+import model.DatabaseConnection;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -19,7 +19,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControllerClient implements Initializable {
-
     @FXML
     private TableColumn<Client, String> Colonne_Adresse;
 
@@ -71,13 +70,12 @@ public class ControllerClient implements Initializable {
     private ImageView imageclient;
 
 
-
     ObservableList<Client> list= FXCollections.observableArrayList();
-
+    DatabaseConnection obj =new DatabaseConnection();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        imageclient.setImage(new Image("Pictures/client.png"));
+        //imageclient.setImage(new Image("Pictures/client.png"));
 
         Colonne_idClient.setCellValueFactory(new PropertyValueFactory<Client,Integer>("id_client"));
         Colonne_nom.setCellValueFactory(new PropertyValueFactory<Client,String>("Nom"));
@@ -88,12 +86,12 @@ public class ControllerClient implements Initializable {
 
         //afficher les données a partir de la base de donnée
 
-        String sql="select * from gestiondaatabase.client";
-        ResultSet res= DatabaseConnection.Afficher(sql);
+        String sql="select * from client";
+        ResultSet res= obj.afficher(sql);
 
             try {
                while(res.next()){
-                   list.add(new Client( res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5), res.getInt(6) ) );
+                   list.add(new Client(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5), res.getInt(6) ));
                }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -146,7 +144,7 @@ public class ControllerClient implements Initializable {
 
            //ajout dans la base de donnée
            String s="insert into client values("+Integer.parseInt(id)+",'"+nom+"','"+prenom+"','"+CIN+"','"+adresse+"',"+Integer.parseInt(age)+")" ;
-           DatabaseConnection.gerer(s);
+           obj.gereMAJ(s);
 
 
             id_field.setText("");
@@ -163,15 +161,15 @@ public class ControllerClient implements Initializable {
     void SupprimerClient(ActionEvent event) {
         Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "Confirmer la suppresion de cet enregistrement", ButtonType.OK,ButtonType.NO);
         //a1.show();
-        Optional <ButtonType> resultat= a1.showAndWait();
+        Optional<ButtonType> resultat= a1.showAndWait();
         if(resultat.get()==ButtonType.OK) {
             int selectedID = tableview.getSelectionModel().getSelectedIndex();
             int id = list.get(selectedID).getId_client();
 
             //Suppression de la base de donnée
 
-            String s = " delete from gestiondaatabase.client where idClient=" + id;
-            DatabaseConnection.gerer(s);
+            String s = " delete from client where idClient=" + id;
+            obj.gereMAJ(s);
 
             //Supression de la table de l interface
             list.remove(selectedID);
@@ -194,14 +192,15 @@ public class ControllerClient implements Initializable {
         String  adresse= Adresse_field.getText();
         int age = Integer.parseInt(Age_field.getText());
 
-        Client f =new Client(id,nom,prenom,CIN,adresse,age);
+        Client f;
+        f = new Client(id,nom,prenom,CIN,adresse,age);
         list.set(selectedID,f);
 
         //Modification dans la base de donnée
         String s="UPDATE Client SET idClient="+ id +", nom='"+nom+"',prenom='"+prenom +"', CIN='"+CIN+"',Adresse='"+adresse+"'" +"Age="+age+
                 "WHERE  idClient="+ancien_id ;
 
-        DatabaseConnection.gerer(s);
+        obj.gereMAJ(s);
 
 
 
@@ -210,24 +209,7 @@ public class ControllerClient implements Initializable {
     @FXML
     void ChercherClient(ActionEvent event) {
 
-        int id= Integer.parseInt(id_field.getText());
-        String nom = nom_field.getText();
-        String prenom = prenom_field.getText();
-        String CIN = CIN_field.getText();
-        String  adresse= Adresse_field.getText();
-        int age = Integer.parseInt(Age_field.getText());
-
-        for(Client c:list){
-            if(c.getAge()==age){
-                System.out.println("oui");
-            }
-            else{
-                System.out.println("non");
-            }
-
         }
 
 
-
-    }
 }

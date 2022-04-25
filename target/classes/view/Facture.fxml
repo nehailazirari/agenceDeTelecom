@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="514.0" prefWidth="688.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerFacture">
+<AnchorPane prefHeight="514.0" prefWidth="688.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerFacture">
     <children>
         <TextField fx:id="numero_field" layoutX="165.0" layoutY="90.0" prefHeight="35.0" prefWidth="117.0" />
         <TextField fx:id="id_field" layoutX="165.0" layoutY="141.0" prefHeight="35.0" prefWidth="117.0" />
@@ -63,6 +63,6 @@
                 <Font size="31.0" />
             </font>
         </Label>
-        <Label layoutX="287.0" layoutY="197.0" prefHeight="25.0" prefWidth="28.0" text="Dhs" />
+      <Label layoutX="287.0" layoutY="197.0" prefHeight="25.0" prefWidth="28.0" text="Dhs" />
     </children>
 </AnchorPane>

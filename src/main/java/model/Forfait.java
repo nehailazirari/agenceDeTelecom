@@ -4,7 +4,7 @@ public class Forfait {
     private int  idForfait, NbHeures, NbGega, NbSMS;
     private float prix;
     private String reseaux_sociaux;
-    public  Forfait(int idForfait, int NbHeures, int NbGega,  int NbSMS, float prix, String reseaux_sociaux ){
+    public  Forfait(int idForfait, float prix, int NbHeures, int NbGega,  int NbSMS, String reseaux_sociaux ){
         setIdForfait(idForfait);
         setNbHeures(NbHeures);
         setNbGega(NbGega);

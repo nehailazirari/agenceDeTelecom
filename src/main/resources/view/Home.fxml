@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="476.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerHome">
+   <children>
+      <AnchorPane layoutX="8.0" layoutY="24.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #373737;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="77.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="29.0" prefHeight="17.0" prefWidth="97.0" text="Agence" textFill="#fffdfd" />
+                  <Separator layoutX="1.0" layoutY="76.0" prefWidth="200.0" />
+               </children>
+            </Pane>
+            <Button layoutX="24.0" layoutY="116.0" mnemonicParsing="false" onMouseClicked="#accueil" prefHeight="32.0" prefWidth="133.0" style="-fx-background-color: #373737;" text="Accueil" textFill="WHITE" />
+            <Button layoutX="24.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#client" prefHeight="32.0" prefWidth="133.0" style="-fx-background-color: #373737;" text="Client" textFill="WHITE" />
+            <Button layoutX="24.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#forfait" prefHeight="32.0" prefWidth="133.0" style="-fx-background-color: #373737;" text="Forfait" textFill="WHITE" />
+            <Button layoutX="24.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#facture" prefHeight="32.0" prefWidth="133.0" style="-fx-background-color: #373737;" text="Facture" textFill="WHITE" />
+            <Button layoutX="24.0" layoutY="338.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" style="-fx-background-color: #373737;" text="Parametre" textFill="WHITE" />
+            <Button fx:id="closeButton" alignment="BOTTOM_CENTER" layoutX="24.0" layoutY="406.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: #373737;" text="deconecter" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Pane layoutX="251.0" prefHeight="77.0" prefWidth="482.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="root" layoutX="199.0" layoutY="146.0" prefHeight="398.0" prefWidth="483.0" AnchorPane.leftAnchor="199.0" AnchorPane.topAnchor="78.0" />
+   </children>
+</AnchorPane>

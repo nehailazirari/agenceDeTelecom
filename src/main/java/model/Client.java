@@ -52,14 +52,14 @@ public class Client  {
     public String getAdresse() {
         return Adresse;}
     public void setAdresse(String adresse) {
-        Adresse = adresse;
+        this.Adresse = adresse;
     }
 
     public int getAge() {
         return Age;
     }
     public void setAge(int age) {
-        Age = age;
+        this.Age = age;
     }
 
 

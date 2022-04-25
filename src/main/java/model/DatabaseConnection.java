@@ -4,10 +4,10 @@ import java.sql.*;
 public class DatabaseConnection {
 
     static Connection connection =null;
-    static String databaseName="gestiondaatabase";
+    static String databaseName="gestiondatabase";
     static String url="jdbc:mysql://localhost:3306/"+databaseName;
-    static String user="root";
-    static String password="root";
+    static String user="system";
+    static String password="nehaila2001";
 
     public  Connection getConnectionD() {
 
@@ -21,21 +21,20 @@ public class DatabaseConnection {
         return connection;
     }
 
-    public  static void gerer(String sql){
+    public  void gereMAJ(String sql){
         DatabaseConnection connectionNew = new DatabaseConnection();
         Connection connect = connectionNew.getConnectionD();
+        PreparedStatement ps = null;
         try {
-            PreparedStatement ps = connect.prepareStatement(sql);
+            ps = connect.prepareStatement(sql);
             ps.executeUpdate();
-            System.out.println("les données ont été mis a jour");
-
         } catch (SQLException e) {
-            System.out.println("échec de mise a jour");
+            e.printStackTrace();
         }
 
     }
 
-    public  static ResultSet Afficher(String sql) {
+    public  ResultSet afficher(String sql) {
         DatabaseConnection connectionNew = new DatabaseConnection();
         Connection connect = connectionNew.getConnectionD();
         ResultSet res=null;
@@ -45,7 +44,7 @@ public class DatabaseConnection {
 
 
         } catch (SQLException e) {
-            System.out.println("echec");
+            e.printStackTrace();
         }
 
         return res;
