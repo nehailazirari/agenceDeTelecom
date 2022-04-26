@@ -46,7 +46,8 @@ public class ControllerForfait implements Initializable {
 
     @FXML
     private Button btnUP;
-
+    @FXML
+    private Button btnRecherche;
     @FXML
     private TableColumn<Forfait, Integer> clnGiga;
 
@@ -64,6 +65,8 @@ public class ControllerForfait implements Initializable {
 
     @FXML
     private TableColumn<Forfait,Integer> clnSMS;
+    @FXML
+    private TextField txtRecherche;
 
     @FXML
     private TableView<Forfait> tableForfait;
@@ -88,7 +91,7 @@ public class ControllerForfait implements Initializable {
         }
 
         else{
-            tableForfait.getItems().clear();
+
             //Ajout dans la table de l interface
             //list.add(new Forfait(Integer.parseInt(idText), Float.parseFloat(prixText),Integer.parseInt(heuresText),Integer.parseInt(gigaText),Integer.parseInt(smsText),rsText) );
             //tableForfait.setItems(list);
@@ -126,7 +129,7 @@ public class ControllerForfait implements Initializable {
         }
 
         else{
-            tableForfait.getItems().clear();
+            //tableForfait.getItems().clear();
             //Ajout dans la table de l interface
             //list.add(new Forfait(Integer.parseInt(idText), Float.parseFloat(prixText),Integer.parseInt(heuresText),Integer.parseInt(gigaText),Integer.parseInt(smsText),rsText) );
             //tableForfait.setItems(list);
@@ -160,7 +163,7 @@ public class ControllerForfait implements Initializable {
             obj.gereMAJ(s);
 
             //Supression de la table de l interface
-            tableForfait.getItems().clear();
+            //tableForfait.getItems().clear();
             tableForfait.setItems(list);
 
             btnID.setText("");
@@ -173,6 +176,7 @@ public class ControllerForfait implements Initializable {
         }
     }
     void showForfait(){
+        tableForfait.getItems().clear();
         clnID.setCellValueFactory(new PropertyValueFactory<Forfait, Integer>("idForfait"));
         clnPrix.setCellValueFactory(new PropertyValueFactory<Forfait, Float>("prix"));
         clnNbHeures.setCellValueFactory(new PropertyValueFactory<Forfait, Integer>("NbHeures"));
@@ -216,10 +220,71 @@ public class ControllerForfait implements Initializable {
                     btnRS.setText(String.valueOf(list.get(indexe).getReseaux_sociaux()));
 
                 }
-
             });
             return row;
         });
+    }
+    @FXML
+    void chercher() {
+        String idText=  txtRecherche.getText();
+        if(idText.equals("")){
+            Alert a1 = new Alert(Alert.AlertType.ERROR, "Champ vide", ButtonType.OK);
+            a1.show();
+        }
+        else {
+            tableForfait.getItems().clear();
+            clnID.setCellValueFactory(new PropertyValueFactory<Forfait, Integer>("idForfait"));
+            clnPrix.setCellValueFactory(new PropertyValueFactory<Forfait, Float>("prix"));
+            clnNbHeures.setCellValueFactory(new PropertyValueFactory<Forfait, Integer>("NbHeures"));
+            clnGiga.setCellValueFactory(new PropertyValueFactory<Forfait, Integer>("NbGega"));
+            clnSMS.setCellValueFactory(new PropertyValueFactory<Forfait, Integer>("NbSMS"));
+            clnRS.setCellValueFactory(new PropertyValueFactory<Forfait, String>("reseaux_sociaux"));
+
+            tableForfait.setItems(list);
+
+            //afficher les données a partir de la base de donnée
+
+            String sql = "select * from forfait where Idforfait ="+Integer.parseInt(idText);
+            ResultSet res = obj.afficher(sql);
+            int m=0;
+
+            try {
+                while (res.next()) {
+                    list.add(new Forfait(res.getInt(1), res.getFloat(2), res.getInt(3), res.getInt(4), res.getInt(5),res.getString(6)));
+                    m=1;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if(m==0){
+                Alert a1 = new Alert(Alert.AlertType.ERROR, "   N'existe pas un forfait corspend a cet identifiant", ButtonType.OK);
+                a1.show();
+            }
+            tableForfait.setItems(list);
+
+            //Afficher les elements d une ligne détéctée
+            tableForfait.setRowFactory(tv -> {
+
+                TableRow<Forfait> row = new TableRow<>();
+                row.setOnMouseClicked(event -> {
+                    if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+
+                        indexe = row.getIndex(); //on a l indice de la ligne selectionnée
+
+                        //Récuperation des valeurs a partir de la ligne selectionnée
+
+                        btnID.setText(String.valueOf(list.get(indexe).getIdForfait()));  //On remplit les champs a partir de la liste
+                        btnPrix.setText(String.valueOf(list.get(indexe).getPrix()));
+                        btnNbHeures.setText(String.valueOf(list.get(indexe).getNbHeures()));
+                        btnNbGiga.setText(String.valueOf(list.get(indexe).getNbGega()));
+                        btnNbSMS.setText(String.valueOf(list.get(indexe).getNbSMS()));
+                        btnRS.setText(String.valueOf(list.get(indexe).getReseaux_sociaux()));
+
+                    }
+                });
+                return row;
+            });
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
