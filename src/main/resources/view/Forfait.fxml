@@ -6,23 +6,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerForfait">
+<AnchorPane prefHeight="428.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerForfait">
    <children>
-      <Label layoutX="63.0" layoutY="37.0" prefHeight="35.0" prefWidth="104.0" text="Rechercher">
-         <font>
-            <Font name="Berlin Sans FB" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtRecherche" layoutX="178.0" layoutY="42.0" promptText="identifiant" />
       <TextField fx:id="btnID" layoutX="41.0" layoutY="105.0" promptText="identifiant" />
       <TextField fx:id="btnPrix" layoutX="207.0" layoutY="105.0" promptText="prix" />
       <TextField fx:id="btnNbHeures" layoutX="372.0" layoutY="105.0" promptText="nombre des heures" />
       <TextField fx:id="btnNbSMS" layoutX="207.0" layoutY="153.0" promptText="nombre des SMS" />
       <TextField fx:id="btnNbGiga" layoutX="41.0" layoutY="153.0" promptText="nombre des gigas" />
       <TextField fx:id="btnRS" layoutX="372.0" layoutY="153.0" promptText="Reseaux sociaux" />
-      <TableView fx:id="tableForfait" blendMode="EXCLUSION" layoutX="41.0" layoutY="191.0" prefHeight="142.0" prefWidth="504.0">
+      <TableView fx:id="tableForfait" layoutX="41.0" layoutY="191.0" prefHeight="193.0" prefWidth="504.0">
         <columns>
           <TableColumn fx:id="clnID" prefWidth="75.0" text="IdForfait" />
           <TableColumn fx:id="clnPrix" prefWidth="75.0" text="Prix" />
@@ -32,9 +27,18 @@
             <TableColumn fx:id="clnRS" prefWidth="128.0" text="ReseauxSociaux" />
         </columns>
       </TableView>
-      <Button fx:id="btnADD" layoutX="86.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#ajouter" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: black;" text="Ajouter" textFill="WHITE" />
-      <Button fx:id="btnUP" layoutX="225.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#modifier" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: black;" text="Modifier" textFill="WHITE" />
-      <Button fx:id="btnDelete" layoutX="349.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: black;" text="Supprimer" textFill="WHITE" />
-      <Button fx:id="btnRecherche" layoutX="345.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#chercher" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: black;" text="Entrer" textFill="WHITE" />
+      <Button fx:id="btnADD" layoutX="41.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#ajouter" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: black;" text="Ajouter" textFill="SKYBLUE" AnchorPane.bottomAnchor="5.0" />
+      <Button fx:id="btnUP" layoutX="163.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#modifier" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: black;" text="Modifier" textFill="SKYBLUE" AnchorPane.bottomAnchor="5.0" />
+      <Button fx:id="btnDelete" layoutX="277.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: black;" text="Supprimer" textFill="SKYBLUE" AnchorPane.bottomAnchor="5.0" />
+      <Button fx:id="btnRecherche" layoutX="400.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#chercher" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: black;" text="Chercher" textFill="SKYBLUE" AnchorPane.bottomAnchor="5.0" />
+      <Pane layoutX="179.0" layoutY="31.0" prefHeight="51.0" prefWidth="245.0">
+         <children>
+            <Label layoutX="14.0" layoutY="6.0" text="Section Forfait">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

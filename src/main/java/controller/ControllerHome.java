@@ -39,13 +39,13 @@ public class ControllerHome implements Initializable {
     }
     @FXML
     void facture() {
-        //try {
-            //fxml = FXMLLoader.load(getClass().getResource("/view/Facture"));
-       // } catch (IOException e) {
-           // e.printStackTrace();
-        //}
-       // root.getChildren().removeAll();
-        //root.getChildren().setAll(fxml);
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/view/Facture"));
+       } catch (IOException e) {
+            e.printStackTrace();
+        }
+        root.getChildren().removeAll();
+        root.getChildren().setAll(fxml);
 
     }
 
