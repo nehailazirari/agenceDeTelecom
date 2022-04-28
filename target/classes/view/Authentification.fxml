@@ -28,7 +28,7 @@
             <PasswordField fx:id="entrerPasswordField" layoutX="103.0" layoutY="224.0" promptText="password" />
             <ImageView fx:id="lockImageView" fitHeight="130.0" fitWidth="181.0" layoutX="103.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../image/imagesk.png" />
+                  <Image url="@../../../../image/imagesk.jpg" />
                </image>
             </ImageView>
             <Label layoutX="26.0" layoutY="179.0" prefHeight="25.0" prefWidth="89.0" text="username">

@@ -1,8 +1,5 @@
-package Controller;
+package controller;
 
-import Model.Client;
-import Model.DatabaseConnection;
-import Model.Facture;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,9 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import model.Client;
+import model.DatabaseConnection;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -71,8 +69,7 @@ public class ControllerClient implements Initializable {
     private Button button_SupprimerClient;
     @FXML
     private ImageView imageclient;
-
-
+    DatabaseConnection obj=new DatabaseConnection();
 
     ObservableList<Client> list= FXCollections.observableArrayList();
     int indexe;
@@ -94,7 +91,7 @@ public class ControllerClient implements Initializable {
         //afficher les données a partir de la base de donnée
 
         String sql="select * from gestiondaatabase.client";
-        ResultSet res= DatabaseConnection.Afficher(sql);
+        ResultSet res= obj.afficher(sql);
 
             try {
                while(res.next()){
@@ -177,7 +174,7 @@ public class ControllerClient implements Initializable {
 
            //ajout dans la base de donnée
            String s="insert into client values("+Integer.parseInt(id)+",'"+nom+"','"+prenom+"','"+CIN+"','"+adresse+"',"+Integer.parseInt(age)+")" ;
-           DatabaseConnection.gerer(s);
+           obj.gereMAJ(s);
 
 
             id_field.setText("");
@@ -202,7 +199,7 @@ public class ControllerClient implements Initializable {
             //Suppression de la base de donnée
 
             String s = " delete from gestiondaatabase.client where idClient=" + id;
-            DatabaseConnection.gerer(s);
+            obj.gereMAJ(s);
 
             //Supression de la table de l interface
             list.remove(selectedID);
@@ -251,7 +248,7 @@ public class ControllerClient implements Initializable {
             String str = "UPDATE gestiondaatabase.client SET idClient=" + Integer.parseInt(id) + ", nom ='" + nom + "', prenom='" + prenom + "', CIN='" + CIN + "' , Adresse='" + adresse + "' , Age=" + Integer.parseInt(age)+
                     "  WHERE  idClient=" + ancien_id;
 
-            DatabaseConnection.gerer(str);
+            obj.gereMAJ(str);
         }
     }
     @FXML

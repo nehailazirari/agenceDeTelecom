@@ -50,7 +50,7 @@ public class ControllerAuthentification implements Initializable {
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
 
-        File lockFile = new File("image/imagesk.png");
+        File lockFile = new File("image/imagesk.jpg");
         Image lockImage = new Image(lockFile.toURI().toString());
         lockImageView.setImage(lockImage);
 

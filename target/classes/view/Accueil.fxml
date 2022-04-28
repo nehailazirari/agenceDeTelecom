@@ -29,17 +29,17 @@
       <Button fx:id="bouton_client2" layoutX="107.0" layoutY="327.0" mnemonicParsing="false" onAction="#acceder_client" prefHeight="37.0" prefWidth="140.0" text="Clients" />
       <ImageView fx:id="image_forfait" fitHeight="139.0" fitWidth="191.0" layoutX="501.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/forfait.jpg" />
+            <Image url="@../../../../image/forfait.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="image_facture" fitHeight="150.0" fitWidth="209.0" layoutX="61.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/client.jpg" />
+            <Image url="@../../../../image/client.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="image_client" fitHeight="129.0" fitWidth="209.0" layoutX="283.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../image/facture.png" />
+            <Image url="@../../../../image/facture.png" />
          </image>
       </ImageView>
       <Button layoutX="323.0" layoutY="327.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="Factures" />
