@@ -23,10 +23,10 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <PasswordField fx:id="entrerPasswordField" layoutX="103.0" layoutY="224.0" promptText="password" />
-            <ImageView fx:id="lockImageView" fitHeight="130.0" fitWidth="181.0" layoutX="70.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="lockImageView" fitHeight="130.0" fitWidth="181.0" layoutX="103.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../image/imagesk.png" />
                </image>

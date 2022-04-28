@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="428.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerForfait">
+<AnchorPane prefHeight="428.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerForfait">
    <children>
       <TextField fx:id="btnID" layoutX="41.0" layoutY="105.0" promptText="identifiant" />
       <TextField fx:id="btnPrix" layoutX="207.0" layoutY="105.0" promptText="prix" />
