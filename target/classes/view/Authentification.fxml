@@ -42,12 +42,12 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Button fx:id="loginButton" layoutX="46.0" layoutY="305.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="30.0" prefWidth="229.0" style="-fx-background-color: #2b818f;" text="Login">
+            <Button fx:id="loginButton" layoutX="46.0" layoutY="305.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="30.0" prefWidth="229.0" style="-fx-background-color: #87ceeb;" text="Login">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="cancelButton" layoutX="46.0" layoutY="351.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="30.0" prefWidth="229.0" style="-fx-background-color: #2b818f;" text="Cancel">
+            <Button fx:id="cancelButton" layoutX="46.0" layoutY="351.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="30.0" prefWidth="229.0" style="-fx-background-color: #87ceeb;" text="Cancel">
                <font>
                   <Font size="14.0" />
                </font>
